@@ -1,0 +1,19 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>House {{ house.pk }}</h2>
+        <p><strong>Region index:</strong> {{ house.region.index }}</p>
+        <p><strong>Address:</strong> {{ house.address }}</p>
+        <p><strong>Lives in the house:</strong> {{ people.count }}
+            {% if people.count > 0 %}
+                ({% for person in people %}
+                {{ person }};
+            {% endfor %})
+            {% endif %}
+        </p>
+        <p><a class="btn btn-success" href="{% url 'houses' %}" role="button">Back to records
+            »</a>
+        </p>
+    </div>
+{% endblock %}

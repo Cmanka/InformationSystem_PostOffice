@@ -1,0 +1,35 @@
+{% extends 'records_list.html' %}
+{% block elements_list %}
+    <div class="col-md-12">
+        <div>
+            <h1 align="center">Manage postmen</h1>
+            <a href="{% url 'add_postman' %}" class="btn btn-success">Add postman</a>
+        </div>
+        <div class="mt-4 mb-4">
+            <table class="table table-hover table-bordered table-light table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Postman full name</th>
+                    <th>Regions served by the postman</th>
+                    <th>Post office name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for postman in postmen %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ postman }}</td>
+                        <td> {{ postman.region_set.all.count }} </td>
+                        <td> {{ postman.post_office }}</td>
+                        <td><a href="{% url 'edit_postman' postman.pk %}" class="btn btn-dark">Edit</a></td>
+                        <td><a href="{% url 'delete_postman' postman.pk %}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

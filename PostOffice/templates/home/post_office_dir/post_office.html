@@ -1,0 +1,31 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>Post office {{ post_office.pk }}</h2>
+        <p>
+            <strong>Name: </strong>{{ post_office.name }}
+        </p>
+            <strong>Address:</strong> {{ post_office.address }}<br>
+        </p>
+        <p>
+            <strong>Employees count:</strong> {{ employees.count }}<br>
+        <ul>
+            <li>Postmen count: {{ postmen.count }}</li>
+            <li>Operators count: {{ operators.count }}</li>
+        </ul>
+        </p>
+        <p>
+            <strong>Served regions:</strong> {{ regions.count }}<br>
+        </p>
+        <p>
+            <strong>Publications count:</strong> {{ publications.count }}({% for publication in publications %}
+            {{ publication.publication }};
+            {% endfor %}
+            )<br>
+        </p>
+        <p><a class="btn btn-success" href="{% url 'post_offices' %}" role="button">Back to records
+            »</a>
+        </p>
+    </div>
+{% endblock %}

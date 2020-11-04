@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Delete confirm{% endblock %}
+{% block content %}
+    <div class="container bg-dark text-light mt-3 mb-3" style="border:5px solid black;border-radius:20px;">
+        <div>
+            <h1>Delete confirmation</h1>
+        </div>
+        <div class="mt-4 mb-4">
+            <form method="post">
+                {% csrf_token %}
+                <p>Are you sure want to delete postman ({{ object }})?</p>
+                <input type="submit" value="Confirm" class="btn btn-danger">
+                <a href="{% url 'manage_postmen' %}" class="btn btn-success">Back to manage postmen</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

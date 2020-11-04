@@ -1,0 +1,18 @@
+{% extends 'records_list.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block elements_list %}
+    {% for follower in followers %}
+        <div class="col-md-6">
+            <h2>Follower {{ follower.pk }}</h2>
+            <p><strong>Full
+                name: </strong> {{ follower }}
+            </p>
+            <p><strong>Address: </strong>{{ follower.house.address }}</p>
+            <p><strong>Email: </strong>{{ follower.email }}</p>
+            <p><strong>Phone number: </strong>{{ follower.phone }}</p>
+            <p><a class="btn btn-success" href="{% url 'follower' follower.pk %}" role="button">View details
+                »</a>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}

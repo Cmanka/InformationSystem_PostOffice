@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Login page
+{% endblock %}
+{% block content %}
+    <div class="cotainer col-lg-3">
+        <h1>Login form</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-secondary">Login</button>
+        </form>
+    </div>
+{% endblock %}
+{% block footer %}
+    <footer class="text-light bg-dark card-footer">
+        <div class="container">
+            <p class="float-right">
+                <a href="#" class="text-success">Back to top</a>
+            </p>
+            <p>Information system designed to manage post offices.</p>
+        </div>
+    </footer>
+{% endblock %}
+

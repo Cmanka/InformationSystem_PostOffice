@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container bg-dark text-light mt-3 mb-3" style="border:5px solid black;border-radius:20px;">
+        <h1 align="center">Add new postman</h1>
+        <form action="{% url 'add_postman' %}" method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success btn-block">Add postman</button>
+        </form>
+    </div>
+{% endblock %}

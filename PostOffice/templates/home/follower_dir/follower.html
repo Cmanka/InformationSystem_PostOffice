@@ -1,0 +1,26 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>Follower {{ follower.pk }}</h2>
+        <p><strong>Full
+            name: </strong> {{ follower }}
+        </p>
+        <p><strong>Region index: </strong>{{ follower.house.region }}</p>
+        <p><strong>House address: </strong>{{ follower.house.address }}</p>
+        <p><strong>Email: </strong>{{ follower.email }}</p>
+        <p><strong>Phone number: </strong>{{ follower.phone }}</p>
+        <p><strong>Subscription(s): </strong>{{ subscriptions.count }}</p>
+        <p><strong>Postman: </strong>{{ postman }}</p>
+        {% if subscriptions.count > 0 %}
+            {% for subscription in subscriptions %}
+                <ul>
+                    <li>{{ subscription }}</li>
+                </ul>
+            {% endfor %}
+        {% endif %}
+        <p><a class="btn btn-success" href="{% url 'followers' %}" role="button">Back to records
+            »</a>
+        </p>
+    </div>
+{% endblock %}

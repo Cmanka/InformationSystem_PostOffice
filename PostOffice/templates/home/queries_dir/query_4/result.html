@@ -1,0 +1,19 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+    <h1>Get follower's subscriptions</h1>
+        {% if count <= 0 %}
+            <h1>The {{ follower }} does not subscribe to publications</h1>
+        {% else %}
+            <p><strong>Follower full name: </strong>{{ follower }}</p>
+            <p><strong>Publications({{ count }})</strong>:
+            <ul>
+            {% for foo in proc %}
+                <li>{{ foo.0 }}</li>
+            {% endfor %}
+            </ul>
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

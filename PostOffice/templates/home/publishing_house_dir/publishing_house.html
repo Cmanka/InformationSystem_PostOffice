@@ -1,0 +1,15 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>Publishing house {{ publishing_house.pk }}</h2>
+        <p><strong>Address:</strong> {{ publishing_house.address }}</p>
+
+        <p>
+            <strong>Publications count: </strong> {{ publishing_house.publication_set.all.count }}
+        </p>
+        <p><a class="btn btn-success" href="{% url 'publishing_houses' %}" role="button">Back to records
+            »</a>
+        </p>
+    </div>
+{% endblock %}

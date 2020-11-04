@@ -1,0 +1,17 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>Subscription {{ subscription.pk }}</h2>
+        <p><strong>Publication: </strong>{{ subscription.release }}</p>
+        <p><strong>Description: </strong>{{ subscription.description }}</p>
+        <p><strong>Start date: </strong>{{ subscription.start_date }}</p>
+        <p><strong>Term(month): </strong>{{ subscription.term }}</p>
+        <p><strong>Followers count: </strong>{{ subscription.follower_set.count }}</p>
+        <p><strong>Editions left: </strong>{{ subscription.release.count }}</p>
+        <p><strong>Cost(1 month): </strong>{{ subscription.release.price }} $</p>
+        <p><strong>Total price: </strong>{{ total_price }} $</p>
+        <p><a class="btn btn-success" href="{% url 'subscriptions' %}" role="button">Back to records »</a>
+        </p>
+    </div>
+{% endblock %}

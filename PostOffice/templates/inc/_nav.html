@@ -1,0 +1,58 @@
+{% load model_tags %}
+<div class="navbar navbar-dark bg-dark box-shadow">
+    <div class="container d-flex justify-content-between">
+        <div class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Information system</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                {% if request.user.is_authenticated %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        {% if request.user.is_staff %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">Administration</a>
+                            </li>
+                            {% if request.user|has_group:'Manager' or request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'manage_postmen' %}">Manage postmen</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'report' %}">Report</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">Queries</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="{% url 'query_1' %}">Get all publications of the post
+                                    office</a>
+                                <a class="dropdown-item" href="{% url 'query_2' %}">Get count of the postmen of the
+                                    post
+                                    office</a>
+                                <a class="dropdown-item" href="{% url 'query_3' %}">Get the name of the postman to
+                                    the
+                                    address</a>
+                                <a class="dropdown-item" href="{% url 'query_4' %}">Get follower's publications</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <u style="color:whitesmoke;font-size:16px;margin-right:10px;">{{ request.user.last_name }} {{ request.user.first_name }} </u>
+                        <a href={% url 'logout' %} class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
+                    </form>
+                {% else %}
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container bg-dark text-light mt-4 mb-4" style="border:5px solid black;border-radius:20px;">
+        <div class="row mt-4 mb-4">
+            {% block elements_list %}{% endblock %}
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center text-light">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-success text-light" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for p in page_obj.paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-item active"><a class="page-link bg-dark border-success text-success" href="?page={{ p }}">{{ p }}</a></li>
+                    {% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
+                        <li class="page-item"><a class="page-link bg-dark border-success text-light" href="?page={{ p }}">{{ p }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-success text-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

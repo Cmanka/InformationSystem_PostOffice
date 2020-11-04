@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container bg-dark text-light mt-3 mb-3" style="border:5px solid black;border-radius:20px;">
+        <div>
+            <h1 align="center">Report</h1>
+            <a href="{% url 'export-pdf' %}" class="btn btn-success">Export to PDF</a>
+        </div>
+        <div class="mt-4 mb-4">
+            <table class="table table-hover table-bordered table-light table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Region index</th>
+                    <th>Postman</th>
+                    <th>Detailed information about publications</th>
+                    <th>Post office info</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for region in regions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ region.index }}</td>
+                        <td>{{ region.postman }}</td>
+                        <td>
+                            {% for publication in publications %}
+                                {% if publication.follower.house.region.postman_id == region.postman.id and region.id == publication.follower.house.region.pk %}
+                                    <strong>Publication (index,name, follower address, term subscription) </strong>
+                                    <ul>
+                                        <li> {{ publication.subscription.release.publication.pk }}</li>
+                                        <li>   {{ publication.subscription.release.publication.name }}</li>
+                                        <li> {{ publication.follower.house.address }}</li>
+                                        <li>{{ publication.subscription.term }} month</li>
+                                    </ul>
+                                {% endif %}
+                            {% endfor %}
+
+                        </td>
+                        {% if request.user.is_superuser %}
+                            <td>
+                                Post office name: {{ region.post_office }}<br>
+                                Employees count: {{ region.post_office.employee_set.all.count }}<br>
+                                Served regions count: {{ region.post_office.region_set.all.count }}<br>
+                                Count of types of publications: {{ region.post_office.release_set.all.count }}
+                            </td>
+                        {% else %}
+                            {% if forloop.counter <= 1 %}
+                                <td rowspan={{ forloop.revcounter }}>
+                                    Post office name: {{ region.post_office }}<br>
+                                    Employees count: {{ region.post_office.employee_set.all.count }}<br>
+                                    Served regions count: {{ region.post_office.region_set.all.count }}<br>
+                                    Count of types of publications: {{ region.post_office.release_set.all.count }}
+                                </td>
+                            {% endif %}
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center text-light">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-success text-light"
+                           href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for p in page_obj.paginator.page_range %}
+                    {% if page_obj.number == p %}
+                        <li class="page-item active"><a class="page-link bg-dark border-success text-success"
+                                                        href="?page={{ p }}">{{ p }}</a></li>
+                    {% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
+                        <li class="page-item"><a class="page-link bg-dark border-success text-light"
+                                                 href="?page={{ p }}">{{ p }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-success text-light"
+                           href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

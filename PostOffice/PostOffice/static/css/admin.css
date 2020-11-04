@@ -1,0 +1,19 @@
+#header {
+    background-color: #343a40;
+    color: white;
+}
+
+#branding h1 a:link, #branding h1 a:visited {
+    color: white;
+}
+
+#content-main caption{
+    background-color:gray;
+}
+
+div.breadcrumbs{
+    background-color: gray;
+}
+nav.sticky caption{
+    background-color: gray;
+}

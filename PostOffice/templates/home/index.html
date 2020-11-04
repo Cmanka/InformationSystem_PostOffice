@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="text-center" style="height:702px;padding-top:250px;background-color: #F3F3F3">
+        <div class="container">
+            <h1 class="jumbotron-heading">Select the ones you are interested in</h1>
+            <p class="lead text-muted">You can select ones and get all selected objects.</p>
+            <p>
+                {% for key in keys.items %}
+                    <a href="/{{ key.1 }}" class="btn btn-secondary" value="{{ item.id }}">{{ key.0 }}</a>
+                {% endfor %}
+            </p>
+        </div>
+    </section>
+{% endblock %}

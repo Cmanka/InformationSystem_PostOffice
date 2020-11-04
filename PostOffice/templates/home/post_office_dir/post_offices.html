@@ -1,0 +1,14 @@
+{% extends 'records_list.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block elements_list %}
+    {% for post_office in post_offices %}
+        <div class="col-md-6">
+            <h2>Post office {{ post_office.pk }}</h2>
+            <p><strong>Name: </strong> {{ post_office.name }}</p>
+            <p><strong>Address:</strong> {{ post_office.address }}</p>
+            <p><a class="btn btn-success" href="{% url 'post_office' post_office.pk %}" role="button">View details
+                »</a>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}

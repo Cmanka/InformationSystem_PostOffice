@@ -1,0 +1,16 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h2>Publication {{ publication.pk }}</h2>
+        <p><strong>Name:</strong> {{ publication.publication }}</p>
+        <p><strong>Description:</strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Consequatur culpa cumque doloribus fuga illum minima, modi omnis quod voluptatem. Accusantium
+            architecto ea ipsam nihil, officiis optio quis saepe tempora voluptate.</p>
+        <p><strong>Number of copies: </strong>{{ publication.count }}</p>
+        <p><strong>Cost per publication:</strong> {{ publication.price }} $</p>
+        <p><a class="btn btn-success" href="{% url 'publications' %}" role="button">Back to records
+            »</a>
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'record.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block element %}
+    <div class="col-md-12">
+        <h1>Get the name and number of publications of the post office</h1>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+            <input type="submit" value="Get data" class="btn btn-success">
+        </form>
+    </div>
+
+{% endblock %}

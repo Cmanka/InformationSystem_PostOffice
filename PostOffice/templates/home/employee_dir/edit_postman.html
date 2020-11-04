@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Edit postman{% endblock %}
+{% block content %}
+    <div class="container bg-dark text-light mt-3 mb-3" style="border:5px solid black;border-radius:20px;">
+        <div>
+            <h1>Employee edit</h1>
+        </div>
+        <div class="mt-4 mb-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update" class="btn btn-danger">
+                <a href="{% url 'manage_postmen' %}" class="btn btn-success">Back to manage postmen</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
